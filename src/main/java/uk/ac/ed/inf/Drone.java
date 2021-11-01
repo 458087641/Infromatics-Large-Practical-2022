@@ -41,8 +41,8 @@ public class Drone {
 
     /**
      * drone movement, including fly and hovering.
-     * @param angle direction of movement
-     * @return true if move succeed
+     * @param angle direction of movement.
+     * @return true if move succeed.
      */
     public boolean droneMove(int angle){
          if (this.batteryLife <= 0){
