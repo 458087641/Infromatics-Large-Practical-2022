@@ -1,4 +1,7 @@
 package uk.ac.ed.inf;
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+
 import java.io.IOException;
 
 import java.net.URI;
@@ -6,6 +9,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.List;
+
 public class ServerConnection {
     private String port;
     private String server;
@@ -46,5 +51,11 @@ public class ServerConnection {
             System.exit(1);
         }
 
+    }
+    public List<Feature> requestNonFlyZone(){
+        List<Feature> noneFlyBuildings;
+        this.getServerResponse(this.getURL() + "/buildings/no-fly-zones.geojson");
+        noneFlyBuildings = FeatureCollection.fromJson(this.getJson()).features();
+        return noneFlyBuildings;
     }
 }

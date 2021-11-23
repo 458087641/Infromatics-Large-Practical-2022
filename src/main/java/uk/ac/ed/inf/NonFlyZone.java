@@ -1,20 +1,18 @@
 package uk.ac.ed.inf;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Point;
 
 import java.util.List;
 
 
 public class NonFlyZone {
+    private String name;
     private List<Feature> noneFlyBuildings;
-    private ServerConnection connection;
 
-    public void requestNonFlyZone(){
-        this.connection.getServerResponse(connection.getURL() + "/buildings/no-fly-zones.geojson");
-        this.noneFlyBuildings = FeatureCollection.fromJson(this.connection.getJson()).features();
-    }
 
+    public String getName(){return this.name;}
     public List<Feature> getNoneFlyBuildings() {
-        return noneFlyBuildings;
+        return this.noneFlyBuildings;
     }
 }
