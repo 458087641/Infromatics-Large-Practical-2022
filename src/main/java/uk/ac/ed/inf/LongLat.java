@@ -1,9 +1,19 @@
 package uk.ac.ed.inf;
 import java.lang.Math.*;
 
+/**
+ * class for store coordinate of a positon, also including methods for calculating bearing angle and distance between
+ * current Longlat object and another LongLat object.
+ */
 public class LongLat
 {
+    /**
+     * longitude of a point on the map
+     */
     public double longitude;
+    /**
+     * latitude of a point on the map
+     */
     public double latitude;
 
     /**
@@ -74,7 +84,7 @@ public class LongLat
             return new_LongLat;
         }
         // the input angle must be the multiple of 10.
-        if (angle>360 & angle % 10 != 0 & angle<0) {
+        if (angle>360 | angle % 10 != 0 | angle<0) {
             throw new IllegalArgumentException("input must be multiples of 10");
         }
         // convert angle to radians for math.sin/cos to calculate.
@@ -85,6 +95,38 @@ public class LongLat
         LongLat new_LongLat = new LongLat(changed_long, changed_lat);
         return new_LongLat;
     }
+
+    /**
+     * calculate bearing angle between current position and given position
+     * @param position the destination position
+     * @return bearing angle between current position and given position
+     */
+    public int calculateAngle(LongLat position){
+        double y = Math.sin(position.longitude-this.longitude)*Math.cos(position.latitude);
+        double x = Math.cos(this.latitude) * Math.sin(position.latitude) - Math.sin(this.latitude) * Math.cos(position.latitude)*Math.cos(position.longitude-this.longitude);
+        double bearing = Math.atan2(y,x);
+        bearing = Math.toDegrees(bearing);
+        bearing =360 - bearing;
+
+        if(bearing<0){
+            bearing =bearing+360;
+        }
+        // set angle to multiple of 10
+        bearing =(int) bearing;
+        if (bearing % 10 < 5) {
+            bearing =  (int)(bearing / 10) * 10;
+        }
+        bearing =  (int) (bearing / 10) * 10 + 10;
+
+        // change angles to satisfy required state, i.e. east direction is 0 degree, north is 90 degree.
+        if (bearing >= 270){
+            bearing =bearing -270;
+            return (int) bearing;
+        }
+        return (int) (bearing +90);
+    }
+
+
 
     /**
      * return the Latitude of the LongLat object

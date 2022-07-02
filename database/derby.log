@@ -1,19 +1,13 @@
-Tue Oct 12 13:16:22 BST 2021 : Apache Derby Network Server - 10.15.2.0 - (1873585) started and ready to accept connections on port 1527
+Fri Dec 10 12:24:05 GMT 2021 : Apache Derby 网络服务器 - 10.15.2.0 - (1873585) 已启动并准备接受端口 9876 上的连接
 ----------------------------------------------------------------
-Tue Oct 12 13:16:34 BST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-017c-746e-9806-00005233816a 
-on database directory /Users/stg/Documents/MySVN/Teaching/ILP/2021/coursework/database/derbyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
-Loaded from file:/Users/stg/Documents/Software/Derby/db-derby-10.15.2.0-bin/lib/derby.jar
+Fri Dec 10 12:27:12 GMT 2021:
+正在使用类加载程序 jdk.internal.loader.ClassLoaders$AppClassLoader@7852e922 引导数据库
+目录 C:\Users\EzrealW\Desktop\ILP\ilp-cw\database\derbyDB 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585) 实例 a816c00e-017d-a44c-ef87-00006b782943
+已从 file:/C:/derby/db-derby-10.15.2.0-bin/lib/derby.jar 加载
 java.vendor=Oracle Corporation
-user.dir=/Users/stg/Documents/MySVN/Teaching/ILP/2021/coursework/database
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.16
-derby.system.home=/Users/stg/Documents/MySVN/Teaching/ILP/2021/coursework/database
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Oct 12 13:17:08 BST 2021: Shutting down Derby engine
-----------------------------------------------------------------
-Tue Oct 12 13:17:08 BST 2021:
-Shutting down instance a816c00e-017c-746e-9806-00005233816a on database directory /Users/stg/Documents/MySVN/Teaching/ILP/2021/coursework/database/derbyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
-----------------------------------------------------------------
+user.dir=C:\Users\EzrealW\Desktop\ILP\ilp-cw\database
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\EzrealW\Desktop\ILP\ilp-cw\database
+数据库类加载程序已启动 - derby.database.classpath=''

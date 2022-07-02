@@ -3,11 +3,15 @@ package uk.ac.ed.inf;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class AppTest {
 
+
+/**
     private static final String VERSION = "1.0.5";
     private static final String RELEASE_DATE = "September 28, 2021";
 
@@ -131,8 +135,8 @@ public class AppTest {
     @Test
     public void testMenusOne() {
         // The webserver must be running on port 9898 to run this test.
-        Menus menus = new Menus("localhost", "9898");
-        int totalCost = menus.getDeliveryCost(
+        ServerConnection cnn = new ServerConnection("localhost", "9898");
+        int totalCost = cnn.getDeliveryCost(
                 "Ham and mozzarella Italian roll"
         );
         // Don't forget the standard delivery charge of 50p
@@ -142,8 +146,8 @@ public class AppTest {
     @Test
     public void testMenusTwo()  {
         // The webserver must be running on port 9898 to run this test.
-        Menus menus = new Menus("localhost", "9898");
-        int totalCost = menus.getDeliveryCost(
+        ServerConnection cnn = new ServerConnection("localhost", "9898");
+        int totalCost = cnn.getDeliveryCost(
                 "Ham and mozzarella Italian roll",
                 "Salami and Swiss Italian roll"
         );
@@ -154,8 +158,8 @@ public class AppTest {
     @Test
     public void testMenusThree()  {
         // The webserver must be running on port 9898 to run this test.
-        Menus menus = new Menus("localhost", "9898");
-        int totalCost = menus.getDeliveryCost(
+        ServerConnection cnn = new ServerConnection("localhost", "9898");
+        int totalCost = cnn.getDeliveryCost(
                 "Ham and mozzarella Italian roll",
                 "Salami and Swiss Italian roll",
                 "Flaming tiger latte"
@@ -167,8 +171,8 @@ public class AppTest {
     @Test
     public void testMenusFourA() {
         // The webserver must be running on port 9898 to run this test.
-        Menus menus = new Menus("localhost", "9898");
-        int totalCost = menus.getDeliveryCost(
+        ServerConnection cnn = new ServerConnection("localhost", "9898");
+        int totalCost = cnn.getDeliveryCost(
                 "Ham and mozzarella Italian roll",
                 "Salami and Swiss Italian roll",
                 "Flaming tiger latte",
@@ -181,8 +185,8 @@ public class AppTest {
     @Test
     public void testMenusFourB()  {
         // The webserver must be running on port 9898 to run this test.
-        Menus menus = new Menus("localhost", "9898");
-        int totalCost = menus.getDeliveryCost(
+        ServerConnection cnn = new ServerConnection("localhost", "9898");
+        int totalCost = cnn.getDeliveryCost(
                 "Flaming tiger latte",
                 "Dirty matcha latte",
                 "Strawberry matcha latte",
@@ -191,6 +195,50 @@ public class AppTest {
         // Don't forget the standard delivery charge of 50p
         assertEquals(4 * 460 + 50, totalCost);
     }
+    @Test
+    public void testword() {
+        ServerConnection cnn = new ServerConnection("9898","localhost");
+        LongLat o = cnn.getWhat3WordsLocation("sketch.spill.puzzle");
+        assertEquals(o.latitude ,55.945626,0.000000);
+        assertEquals(o.longitude ,-3.191065,0.000000);
+    }
+    @Test
+    public void testbuildings() {
+        ServerConnection cnn = new ServerConnection("9898","localhost");
+        ArrayList<NonFlyZone> buildings = cnn.getNoFlyBuildings();
+        assertEquals(buildings.get(0).getCoordinates().get(0).latitude() ,55.945267798202174,0.000000);
+    }
+    @Test
+    public void testdatabase(){
+        DatabaseFunctions db = new DatabaseFunctions("9876","localhost");
+        ArrayList<Orders> o = db.getOrderByDate("2023-12-01");
 
+        assertTrue(db.connectToDB());
+    }
+    @Test
+    public void testdrone(){
+        Drone d = new Drone("2023-12-01","9898","9876");
+        d.getNextMenuAndOrder();
+        LongLat app = new LongLat(-3.186874,55.944494);
+        LongLat land = new LongLat(-3.1911,55.9456);
+        //int angle = app.getAngle(land);
+        //LongLat next = app.nextPosition(angle);
+        ArrayList<LongLat>path = d.generatePath(app,land);
 
+        assertTrue(d.checkMeetNonFly(path));
+    }
+    @Test
+    public void testpath(){
+        LongLat app = new LongLat(-3.186874,55.944494);
+        LongLat land = new LongLat(-3.191594,55.943658);
+        //int angle = app.getAngle(land);
+        //LongLat next = app.nextPosition(angle);
+        //ArrayList<LongLat>path = Drone.generatePath(app,land);
+        assertTrue(true);
+    }
+    @Test
+    public void testApp(){
+        //App.main(["01", "01" ,"2022" ,"9898" ,"9876"]);
+    }
+    */
 }
